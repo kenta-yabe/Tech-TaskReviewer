@@ -1,0 +1,45 @@
+<div　style="background-color: #99ccff; text-color: #0066cc">
+  <h2>目標詳細</h2>
+</div>
+
+<!--目標名-->
+<div class="container">
+    <div class="row">
+        <small class="col-sm-2">目標No.</small>
+        <small class="col-sm-1">目標</small>
+        <div class="offset-sm-5 col-sm-2"><%= link_to 'edit', edit_purpose_path(@purpose), class: 'btn btn-primary btn-sm' %></div>
+        <div class="col-sm-2"><%= link_to "Delete", @purpose, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %></div>
+    </div> 
+
+    <div class="row bordered">
+        <div class="col-sm-2"><%= @purpose.id %></div>
+        <div class="col-sm-8"><%= @purpose.content %></div>
+        <div class="col-sm-2"><button type="button" class="btn btn-primary">達成</button></div>
+    </div>    
+</div>
+
+
+<!--目標関連のタスクリスト
+<table class="table table-bordered">
+  <tr>
+    <th>id</th>
+    <td>
+<%=# @task.id %>
+</td>
+  </tr>
+  <tr>
+    <th>タスク名</th>
+    <td>
+<%=# @task.content %>
+</td>
+  </tr>
+  <tr>
+    <th>状況</th>
+    <td>
+<%=# @task.status %>
+</td>
+  </tr>
+  
+  <%= #paginate tasks %>
+</table>\\>
+

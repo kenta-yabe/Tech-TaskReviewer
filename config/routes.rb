@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
+  get 'purposes/show'
+  get 'purposes/new'
+  get 'purposes/edit'
+  get 'purposes/create'
+  get 'purposes/destroy'
     root to: 'toppages#index'
     
     get 'login', to: 'sessions#new'
@@ -11,4 +13,7 @@ Rails.application.routes.draw do
     
     get 'signup', to: 'users#new'
     resources :users, only: [:show, :new, :create]
+    
+    resources :purposes, only: [:show,:new,:create,:edit,:destroy]
+    #complete,done,purpose_reviewのrootも作成(open,checkはview必要なし)
 end
