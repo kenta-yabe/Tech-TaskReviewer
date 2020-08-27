@@ -1,20 +1,15 @@
 <header class="mb-4">
   <!-- タイトル-->
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-  　<a class="navbar-brand" href="/">Task Reviewer</a>
-  </nav>
-  
-  <!-- ナビバー-->
-  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">Microposts</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <nav class="navbar navbar-expand-sm navbar-light" style="background-color:#0099ff;">
+  　<a class="navbar-brand text-light" href="/">Task Reviewer</a>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
-        <li class="nav-item"><a href="#" class="nav-link">Signup</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
+        <% if logged_in? %>
+        <% else %>
+          <li class="nav-item mr-2"><%= link_to 'Signup', signup_path, class: 'nav-link btn btn-outline-light text-light' %></li>
+          <li class="nav-item"><%= link_to 'Login', login_path, class: 'nav-link btn btn-outline-light text-light' %></li>
+        <% end %>
       </ul>
     </div>
   </nav>

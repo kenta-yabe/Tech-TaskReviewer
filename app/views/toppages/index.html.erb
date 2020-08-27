@@ -1,5 +1,72 @@
-<div class="center jumbotron">
-  <div class="text-center">
-    <h1>Welcome to the Task Reviewer</h1>
-  </div>
-</div>
+<!--ログインの分岐-->
+<% if logged_in? %>
+<!--ログイン時-->
+  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  
+  <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-space-between" id="navbarSupportedContent">
+      <ul class="navbar-nav">
+          <li class="nav-item"><a href="#" class="nav-link">HOME</a></li>
+          <li class="nav-item"><a href="#" class="nav-link">ReviewList</a></li>
+          <li class="nav-item dropdown">
+            <button type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown">My Page</button>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li class="dropdown-item"><%= link_to 'My profile', user_path(current_user) %></li>
+              <li class="dropdown-item">comp.Task</li>
+              <li class="dropdown-divider"></li>
+              <li class="dropdown-item">%= link_to 'Logout', logout_path, method: :delete %></li>
+            </ul>
+          </li>
+      </ul>
+    </div>
+  </nav>-->
+  
+  
+<% else %>
+<!--非ログイン時-->
+    <div class="center jumbotron">
+      <!--背景画像を挿入-->
+      <div class="text-center">
+        <h1>目標へ向かう道のりを励まし合える目標管理アプリ</h1>
+        <p>ユーザー間で互いの目標をレビューしあえるタスク管理ツール</p>
+      </div>
+    </div>
+      <!---------------------------->
+    <div class="row">
+      <!---->
+     <div class="card col-lg-4">
+       <div class="card-header text-center">
+        <p>目標一覧</p>
+       </div>
+       <div class="card-body">
+    　　　　<p>様々な利用者の目指す目標が、一覧で見れる。目標建ての参考や、自分と同じような目標を追う人が見つかる。</p>
+       </div>
+      </div>
+      <!---->
+      <div class="card col-lg-4">
+       <div class="card-header">
+        目標へのフィードバック
+       </div>
+       <div class="card-body">
+    　　　　<p>利用者の公表した目標に対し、相互のコメントが可能。目標の進み具合に対して意見をもらったり、質問の受け答えが可能。</p>
+       </div>
+      </div>
+      <!---->
+      <div class="card col-lg-4">
+       <div class="card-header">
+        目標ごとのタスク管理
+       </div>
+       <div class="card-body">
+    　　　　<p>ユーザーの目標毎に、タスクリストを設定可能。また、優先したいタスクを一覧で表示できる。さらに、達成した目標を後から見ることも可能。</p>
+       </div>
+      </div>
+    </div>
+    
+    <div class="mt-4 text-center">
+     <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+    </div>
+<% end %>
