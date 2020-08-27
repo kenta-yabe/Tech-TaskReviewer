@@ -19,27 +19,14 @@
 </div>
 
 
-<!--目標関連のタスクリスト
-<table class="table table-bordered">
-  <tr>
-    <th>id</th>
-    <td>
-<%=# @task.id %>
-</td>
-  </tr>
-  <tr>
-    <th>タスク名</th>
-    <td>
-<%=# @task.content %>
-</td>
-  </tr>
-  <tr>
-    <th>状況</th>
-    <td>
-<%=# @task.status %>
-</td>
-  </tr>
-  
-  <%= #paginate tasks %>
-</table>\\>
-
+<!--目標関連のタスクリスト-->
+<div class="mt-4">
+ <%= render 'tasks/tasklist', tasks: @tasks %>
+</div>
+<!--新規タスク登録フォーム-->
+<%= form_with(model: @task, local: true, class: "form-inline") do |f| %>
+        <div class="form-group">
+          <%= f.text_area :content, class: 'form-control', rows: 2 %>
+        </div>
+        <%= f.submit 'submit', class: 'btn btn-primary btn-sm' %>
+      <% end %>

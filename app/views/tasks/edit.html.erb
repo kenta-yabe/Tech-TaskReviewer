@@ -1,0 +1,15 @@
+<div　style="background-color: #99ccff; text-color: #0066cc">
+  <h2>タスクの編集</h2>
+</div>
+
+
+<!--<div class="text-center">
+  <h3>目標</h3>
+</div>-->
+
+<%= form_with(model: @task, local: true) do |f| %>
+  <%= f.label :content, 'タスク' %>
+  <%= f.text_field :content %>
+
+  <%= f.submit '編集完了' %>
+<% end %>
