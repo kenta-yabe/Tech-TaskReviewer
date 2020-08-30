@@ -9,6 +9,9 @@
 </div>-->
 
 <%= form_with(model: @task, local: true) do |f| %>
+　 <%= render 'layouts/error_messages', model: f.object %>
+
+
   <%= f.label :content, 'タスク' %>
   <%= f.text_field :content %>
   <%= hidden_field_tag :purpose_id, @task.purpose.id %>

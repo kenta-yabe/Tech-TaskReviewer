@@ -2,19 +2,21 @@ class ReviewsController < ApplicationController
   before_action :require_user_logged_in
    
   def create
-    #@purpose = Purpose.find(params[:][:purpose_id]) #投稿先の目標を指定
     @review = current_user.reviews.build(review_params)
-    @purpose = @review.purpose
-    @review.save
-    flash[:success] = 'コメントを投稿しました。'
-    redirect_to review_purpose_path(@purpose) 
+    if @review.save
+      flash[:success] = 'レビューを投稿しました。'
+      redirect_to review_purpose_path(@review.purpose) 
+    else
+      flash[:danger] = 'レビューの投稿に失敗しました。'
+      redirect_to review_purpose_path(@review.purpose)
+    end
   end
 
   def destroy
     @purpose = Purpose.find_by(id: params[:purpose_id])
     review = current_user.reviews.find(params[:id])
     review.destroy if review
-    flash[:success] = 'コメントを削除しました。'
+    flash[:success] = 'レビューを削除しました。'
     redirect_to review_purpose_path(@purpose) 
   end
 
@@ -34,8 +36,8 @@ class ReviewsController < ApplicationController
           flash[:success] = 'タスクの編集に成功しました。'
           redirect_to review_purpose_path(@purpose) 
         else
-          flash.now[:danger] = 'コメントの編集に失敗しました。'
-          redirect_to review_purpose_path(@purpose) 
+          flash.now[:danger] = 'レビューの編集に失敗しました。'
+          render :edit
         end
   end
   

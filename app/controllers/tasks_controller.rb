@@ -9,7 +9,7 @@ class TasksController < ApplicationController
       flash[:success] = 'タスクの登録に成功しました。'
       redirect_to @purpose
     else
-      flash.now[:danger] = 'タスクの登録に失敗しました。'
+      flash[:danger] = 'タスクの登録に失敗しました。'
       redirect_to @purpose
     end
   end
@@ -32,7 +32,7 @@ class TasksController < ApplicationController
         if @task.update(task_params)
           redirect_to @purpose
         else
-          flash.now[:danger] = 'タスクの優先・非優先処理に失敗しました。'
+          flash[:danger] = 'タスクの優先・非優先処理に失敗しました。'
           redirect_to @purpose
         end
       else
@@ -41,7 +41,7 @@ class TasksController < ApplicationController
           redirect_to @purpose
         else
           flash.now[:danger] = 'タスクの編集に失敗しました。'
-          redirect_to @purpose
+          render :edit
         end
       end
     end

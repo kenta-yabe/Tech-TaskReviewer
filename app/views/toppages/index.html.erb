@@ -44,10 +44,12 @@
         <p>ユーザー間で互いの目標をレビューしあえるタスク管理ツール</p>
       </div>
     </div>
+ </div>
       <!---------------------------->
-    <div class="row">
+ <div class="container mt-2">
+    <div class="card-group">
       <!---->
-     <div class="card col-sm-4">
+     <div class="card">
        <div class="card-header text-center">
         目標一覧
        </div>
@@ -56,16 +58,16 @@
        </div>
       </div>
       <!---->
-      <div class="card col-sm-4">
+      <div class="card">
        <div class="card-header text-center">
         目標へのフィードバック
        </div>
        <div class="card-body">
-    　　　　<p>利用者の公表した目標に対し、相互のコメントが可能。目標の進み具合に対して意見をもらったり、質問の受け答えが可能。</p>
+    　　　　<p>利用者の公表した目標に対し、相互のレビューコメントが可能。目標の進み具合に対して意見をもらったり、質問の受け答えが可能。</p>
        </div>
       </div>
       <!---->
-      <div class="card col-sm-4">
+      <div class="card">
        <div class="card-header text-center">
         目標ごとのタスク管理
        </div>
@@ -74,10 +76,10 @@
        </div>
       </div>
     </div>
-    
+  
     <div class="mt-4 text-center">
-     <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
     </div>
-</div>
+ </div>
 <% end %>
 

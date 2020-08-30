@@ -19,9 +19,9 @@
                                          <%=link_to "Review" , review_purpose_path(purpose), class: 'btn btn-info btn-sm'%>
                                         </div>
                                     </div>
-                                     <!--最新usercomment-->
+                                     <!--最新userreviwcomment-->
                                      <div class="row ml-1 mt-2">
-                                         <small class="col-sm-6" style="color:blue">ユーザー最新コメント</small>
+                                         <small class="col-sm-6" style="color:blue">ユーザー最新Review comment</small>
                                          <% if purpose.reviews.where(user_id: purpose.user.id).any? %>
                                             <small class="col-sm-6" style="color:blue">投稿日時:<%= purpose.reviews.where(user_id: purpose.user.id).last.created_at.strftime("%Y/%m/%d %H:%M") %></small>
                                         <%end%>
@@ -36,7 +36,7 @@
 
                                      <!--最新comment-->
                                      <div class="row ml-1 mt-2">
-                                          <small class="col-sm-6" style="color:blue">他ユーザー最新コメント</small>
+                                          <small class="col-sm-6" style="color:blue">他ユーザー最新Review comment</small>
                                           <% if purpose.reviews.where.not(user_id: purpose.user.id).any? %>
                                             <small class="col-sm-6" style="color:blue">投稿日時:<%= purpose.reviews.where.not(user_id: purpose.user.id).last.created_at.strftime("%Y/%m/%d %H:%M") %></small>
                                         <%end%>

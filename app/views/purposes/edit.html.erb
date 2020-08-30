@@ -11,6 +11,8 @@
 </div>-->
 
 <%= form_with(model: @purpose, local: true) do |f| %>
+　<%= render 'layouts/error_messages', model: f.object %>
+　 
   <%= f.label :content, '目標' %>
   <%= f.text_field :content %>
 

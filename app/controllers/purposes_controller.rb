@@ -3,8 +3,9 @@ class PurposesController < ApplicationController
   before_action :correct_user, only: [:show, :edit, :destroy]
   
   def show
-    @tasks = @purpose.tasks.page(params[:page])
-    @task = @purpose.tasks.build
+     @purpose = Purpose.find(params[:id])
+      @tasks = @purpose.tasks.page(params[:page])
+      @task = @purpose.tasks.build
   end
 
   def new

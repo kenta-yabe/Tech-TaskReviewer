@@ -12,7 +12,7 @@
 <!--user_comment-->
  <div class="container mt-4" style="max-height : 400px; overflow: scroll; border: #99ccff 10px ridge; background-color: #99ccff;">
      <div class="row">
-         <div class="col-sm-6" style="background-color: #0066cc; color:white;">User comment: <%= @user.name %></div>
+         <div class="col-sm-6" style="background-color: #0066cc; color:white;">User review: <%= @user.name %></div>
      </div>
      <div class="row">
          <div class="col-sm-2">
@@ -49,9 +49,10 @@
 <!--投稿フォーム-->
 <% if current_user==@user%>
     <div class="container mt-4">
-        <%= form_with(model: current_user.reviews.build, local: true, class: "") do |f| %>
+        <%= form_with(model: current_user.reviews.build, local: true) do |f| %>
+        　　<%= render 'layouts/error_messages', model: f.object %>
             <div class="row">
-              <%= f.text_area :content, placeholder: "User commentの投稿", class: "form-control col-sm-8 offset-sm-1", size: "60x1"%>
+              <%= f.text_area :content, placeholder: "User review commentの投稿　　(※空文字禁止)"", class: "form-control col-sm-8 offset-sm-1", size: "60x1"%>
               <%= f.hidden_field :purpose_id, value: @purpose.id %>
               <%= f.submit 'submit', class: 'btn btn-primary btn-sm col-sm-2' %>
             </div>
@@ -63,7 +64,7 @@
 <!--comment-->
 <div class="container mt-4" style="max-height : 400px; overflow: scroll; border: #99ccff 10px ridge; background-color: #99ccff;">
     <div class="row">
-         <div class="col-sm-6" style="background-color: #0066cc; color:white;">他ユーザーからのComment</div>
+         <div class="col-sm-6" style="background-color: #0066cc; color:white;">他ユーザーからのReview comments</div>
     </div>
     <% if @reviews.any? %>
     <% @reviews.each do |review| %>
@@ -100,9 +101,10 @@
 <!--投稿フォーム-->
 <% if !(current_user == @user) %>
 <div class="container mt-4">
-    <%= form_with(model: current_user.reviews.build, local: true, class: "") do |f| %>
+    <%= form_with(model: current_user.reviews.build, local: true) do |f| %>
+    　　<%= render 'layouts/error_messages', model: f.object %>
         <div class="row">
-          <%= f.text_area :content, placeholder: "この目標へコメントを投稿する", class: "form-control col-sm-8 offset-sm-1", size: "60x1" %>
+          <%= f.text_area :content, placeholder: "この目標へReview commentを投稿する　(※空文字禁止)"", class: "form-control col-sm-8 offset-sm-1", size: "60x1" %>
           <%= f.hidden_field :purpose_id, value: @purpose.id %>
           <%= f.submit 'submit', class: 'btn btn-primary btn-sm col-sm-2' %>
         </div>
