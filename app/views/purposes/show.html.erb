@@ -57,7 +57,7 @@
     <%= form_with(model: @task, local: true) do |f| %>
         　　<%= render 'layouts/error_messages', model: f.object %>
             <div class="row">
-              <%= f.text_area :content, placeholder: "新規タスクの登録　(※空文字禁止)", class: "form-control col-sm-8 offset-sm-1", size: "60x1" %>
+              <%= f.text_area :content, placeholder: "新規タスクの登録　(※空文字禁止・字数制限:100字)", class: "form-control col-sm-8 offset-sm-1", size: "60x1" %>
                <%= hidden_field_tag :purpose_id, @task.purpose.id %>
             <%= f.submit 'submit', class: 'btn btn-primary btn-sm col-sm-2' %>
             </div>

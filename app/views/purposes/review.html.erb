@@ -52,7 +52,7 @@
         <%= form_with(model: current_user.reviews.build, local: true) do |f| %>
         　　<%= render 'layouts/error_messages', model: f.object %>
             <div class="row">
-              <%= f.text_area :content, placeholder: "User review commentの投稿　　(※空文字禁止)", class: "form-control col-sm-8 offset-sm-1", size: "60x1"%>
+              <%= f.text_area :content, placeholder: "User review commentの投稿　(※空文字禁止・字数制限:100字)", class: "form-control col-sm-8 offset-sm-1", size: "60x1"%>
               <%= f.hidden_field :purpose_id, value: @purpose.id %>
               <%= f.submit 'submit', class: 'btn btn-primary btn-sm col-sm-2' %>
             </div>
@@ -104,7 +104,7 @@
     <%= form_with(model: current_user.reviews.build, local: true) do |f| %>
     　　<%= render 'layouts/error_messages', model: f.object %>
         <div class="row">
-          <%= f.text_area :content, placeholder: "この目標へReview commentを投稿する　(※空文字禁止)", class: "form-control col-sm-8 offset-sm-1", size: "60x1" %>
+          <%= f.text_area :content, placeholder: "この目標へReview commentを投稿する　(※空文字禁止・字数制限:100字)", class: "form-control col-sm-8 offset-sm-1", size: "60x1" %>
           <%= f.hidden_field :purpose_id, value: @purpose.id %>
           <%= f.submit 'submit', class: 'btn btn-primary btn-sm col-sm-2' %>
         </div>
