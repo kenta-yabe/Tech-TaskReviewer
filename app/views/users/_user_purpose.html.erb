@@ -1,0 +1,78 @@
+<!--目標リスト-->
+<%if current_user==user%>
+    <% if purposes.any? %>
+        <% purposes.each do |purpose| %>
+          <div class="row" style="background-color: #99ccff;">
+              <div class="offset-sm-1 col-sm-8">
+                  <h4 style="color: white;">No.<%= purpose.id %> 目標:  <%= link_to purpose.content, purpose_path(purpose) %></h4>
+              </div>
+          </div>
+          
+          <div class="row mb-2">
+              <div class="col-sm-2" style="text-align : center;">
+                   <img class="mr-2 mt-1 rounded" src="<%= gravatar_url(user, { size: 90 }) %>" alt="">
+              </div>
+              <div class="col-sm-10 mt-1">
+                  <div class="row ml-2 mt-3">
+                     <div class="col-sm-11 border border-primary mb-1" style="min-height: 15px;">
+                        <% if purpose.reviews.where(user_id: user.id).any? %>
+                        <%= purpose.reviews.where(user_id: user.id).last.content %>
+                        <%end%>
+                     </div>
+                 </div>
+                 <div class="row ml-1 mt-2">
+                      <% if purpose.reviews.where(user_id: user.id).any? %>
+                        <small class="col-sm-6" style="color:blue">投稿日時:<%= purpose.reviews.where(user_id: user.id).last.created_at.strftime("%Y/%m/%d %H:%M") %></small>
+                        <div class="offset-sm-2 col-sm-2">
+                            <%=link_to "Review" , review_purpose_path(purpose), class: 'btn btn-info btn-sm'%>
+                        </div>
+                      <%else%>
+                        <div class="offset-sm-8 col-sm-2">
+                            <%=link_to "Review" , review_purpose_path(purpose), class: 'btn btn-info btn-sm'%>
+                        </div>
+                      <%end%>
+                 </div>
+              </div>
+          </div>
+         <% end %>
+    <% end %>
+<%else%>
+    <% if purposes.where(open: true).any? %>
+        <% purposes.where(open: true).each do |purpose| %>
+            <div class="row" style="background-color: #99ccff;">
+              <div class="offset-sm-1 col-sm-8">
+                  <h4 style="color: white;">No.<%= purpose.id %> 目標:  <%= purpose.content %></h4>
+              </div>
+          </div>
+          
+          <div class="row mb-2">
+              <div class="col-sm-2" style="text-align : center;">
+                   <img class="mr-2 mt-1 rounded" src="<%= gravatar_url(user, { size: 90 }) %>" alt="">
+              </div>
+              <div class="col-sm-10 mt-1">
+                  <div class="row ml-2 mt-3">
+                     <div class="col-sm-11 border border-primary mb-1" style="min-height: 15px;">
+                        <% if purpose.reviews.where(user_id: user.id).any? %>
+                        <%= purpose.reviews.where(user_id: user.id).last.content %>
+                        <%end%>
+                     </div>
+                 </div>
+                 <div class="row ml-1 mt-2">
+                      <% if purpose.reviews.where(user_id: user.id).any? %>
+                        <small class="col-sm-6" style="color:blue">投稿日時:<%= purpose.reviews.where(user_id: user.id).last.created_at.strftime("%Y/%m/%d %H:%M") %></small>
+                        <div class="offset-sm-2 col-sm-2">
+                            <%=link_to "Review" , review_purpose_path(purpose), class: 'btn btn-info btn-sm'%>
+                        </div>
+                      <%else%>
+                        <div class="offset-sm-8 col-sm-2">
+                            <%=link_to "Review" , review_purpose_path(purpose), class: 'btn btn-info btn-sm'%>
+                        </div>
+                    <%end%>
+                 </div>
+              </div>
+          </div>
+         <% end %>
+    <% end %>
+<%end%>
+
+

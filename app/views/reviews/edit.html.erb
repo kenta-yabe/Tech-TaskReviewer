@@ -1,0 +1,12 @@
+ <div class="container-fluid">
+  <div class="row" style="background-color: #99ccff; color: #0066cc;">
+  <h2 class="ml-5 pl-3">コメントの編集</h2>
+  </div>
+ </div>
+
+
+<%= form_with(model: @review, local: true) do |f| %>
+  <%= f.label :content, 'コメント' %>
+  <%= f.text_field :content %>
+  <%= f.submit '編集完了' %>
+<% end %>

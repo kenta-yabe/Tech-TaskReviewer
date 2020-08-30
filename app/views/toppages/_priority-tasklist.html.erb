@@ -1,15 +1,17 @@
-
-   <table class="table table-striped">
+  <table class="table table-striped">
     <thead>
       <tr class="d-flex">
-        <th class="col-sm-1"></th>
-        <th class="col-sm-2">No.  　　　check</th>
-        <th class="col-sm-9">タスク</th>
+        <th class="col-sm-1">No.</th>
+        <th class="col-sm-1 pl-0">check</th>
+        <th class="col-sm-10">タスク</th>
       </tr>
     </thead>
     
     <tbody>
-        <% tasks.each do |task| %>
+        <% purposes.each do |purpose| %>
+        
+        
+        <% purpose.tasks.where(priority: true).each do |task| %>
         <tr class="d-flex">
            <td class="col-sm-2">
               <div style="text-align : left ;">
@@ -19,18 +21,18 @@
                     <%= f.hidden_field :check, value: false %>
                     <%= hidden_field_tag :purpose_id, task.purpose.id %>
                     <%= hidden_field_tag :i, "2" %>
-                    <%= f.submit "戻す", class: 'btn btn-dark btn-sm'%>
+                    <%= f.submit "戻す" ,class: 'btn btn-dark btn-sm'%>
                   <% else %>
                     <%= f.hidden_field :check, value: true%>
                     <%= hidden_field_tag :purpose_id, task.purpose.id%>
                     <%= hidden_field_tag :i, "2" %>
-                    <%= f.submit "完了", class: 'btn btn-light btn-sm'%>
+                    <%= f.submit "完了" ,class: 'btn btn-light btn-sm'%>
                   <% end %>
               <%end%>
              </div>
           </td>
           <td class="col-sm-7">
-               <% if task.check==true%> 
+              <% if task.check==true%> 
                 <div style="text-decoration: line-through;">
                  <%= task.content %>
                 </div>
@@ -39,27 +41,26 @@
                <%end%>
           </td>
           <td class="col-sm-3">
-               <div class='btn-toolbar'>
+            <div class='btn-toolbar'>
                 <div class="btn-group">
-                   <%= form_with(model: task, local: true) do |f| %>
+              <%= form_with(model: task, local: true) do |f| %>
                    <% if task.priority==true%>
                     <%= f.hidden_field :priority, value: false %>
                     <%= hidden_field_tag :purpose_id, task.purpose.id %>
                     <%= hidden_field_tag :i, "1" %>
-                    <%= f.submit "非優先",class: 'btn btn-secondary btn-sm'%>
+                    <%= f.submit "非優先" ,class: 'btn btn-secondary btn-sm'%>
                    <% else %>
                     <%= f.hidden_field :priority, value: true%>
-                    <%= hidden_field_tag :purpose_id, task.purpose.id %>
+                    <%= hidden_field_tag :purpose_id, task.purpose.id%>
                     <%= hidden_field_tag :i, "1" %>
                     <%= f.submit "優先" ,class: 'btn btn-primary btn-sm'%>
                    <% end %>
-                    <% end %>
-                  <%= link_to 'edit', edit_task_path(task,purpose_id: task.purpose.id), class: 'btn btn-warning btn-sm ml-2' %>
-                  <%= link_to "Delete", task_path(task,purpose_id: task.purpose.id), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm ml-2' %>
-                </div>
-               </div>
+                <% end %>
+              <%= link_to 'edit', edit_task_path(task,purpose_id: task.purpose.id), class: 'btn btn-warning btn-sm ml-2' %>
+              <%= link_to "Delete", task_path(task,purpose_id: task.purpose.id), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm ml-2' %>
           </td>
         </tr>
-        <% end %>        
+        <% end %>  
+        <% end %>
     </tbody>
   </table>

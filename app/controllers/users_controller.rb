@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @purposes = @user.purposes.where(complete: nil).page(params[:page])
+    @review_purposes = @user.review_purposes.where(open: true).where.not(user_id: @user.id)
   end
 
   def new
@@ -20,6 +22,12 @@ class UsersController < ApplicationController
       render :new
     end
   end
+  ###############################################
+  def complist
+    @purposes = current_user.purposes.where(complete: true).order(id: :desc).page(params[:page])
+  end
+  ###############################################
+  
   
   private
 

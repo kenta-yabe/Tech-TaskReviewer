@@ -1,16 +1,48 @@
-<header class="mb-4">
+<header class="mb-0">
   <!-- タイトル-->
   <nav class="navbar navbar-expand-sm navbar-light" style="background-color:#0099ff;">
-  　<a class="navbar-brand text-light" href="/">Task Reviewer</a>
+  　<a class="navbar-brand text-light ml-4" href="/">Task Reviewer</a>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
         <% if logged_in? %>
         <% else %>
-          <li class="nav-item mr-2"><%= link_to 'Signup', signup_path, class: 'nav-link btn btn-outline-light text-light' %></li>
-          <li class="nav-item"><%= link_to 'Login', login_path, class: 'nav-link btn btn-outline-light text-light' %></li>
+          <li class="nav-item mr-2"><%= link_to 'Signup', signup_path, class: 'nav-link btn btn-outline-light btn-sm text-light' %></li>
+          <li class="nav-item"><%= link_to 'Login', login_path, class: 'nav-link btn btn-outline-light btn-sm text-light' %></li>
         <% end %>
       </ul>
     </div>
   </nav>
+  
+  <% if logged_in? %>
+  <!--
+    <div class="d-flex">
+      <a href="/" class="flex-fill text-center" style="background-color: #0066cc; color: #fff;">HOME</a>
+      <button type="button" class="flex-fill">ReviewList</button>
+      <button type="button" class="flex-fill">MyPage</button>
+    </div>
+    -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav w-100 nav-justified">
+          <li class="nav-item"><a href="/" class="nav-link">HOME</a></li>
+          <li class="nav-item"><a href="/reviewlists" class="nav-link">ReviewList</a></li>
+          <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">MyPage</a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li class="dropdown-item"><%= link_to current_user.name, user_path(current_user) %></li>
+              <li class="dropdown-item"><%= link_to 'comp.Task', complist_user_path(current_user) %></li>
+              <li class="dropdown-divider"></li>
+              <li class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete %></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+  </nav>
+
+
+  <% end %>
 </header>

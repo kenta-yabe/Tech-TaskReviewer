@@ -2,12 +2,12 @@ class ToppagesController < ApplicationController
   def index
     if logged_in?
       #優先タスク表示用
-      #@priory_tasks = current_user.purposes.tasks.order(id: :desc).page(params[:page])
+      @purposes = current_user.purposes
+      # purposesをviewでサイクル, サイクル内でpurpose.tasks.where(priority: true)を取得し、それを2段階目のサイクルで表示する
       
       #フォロワー目標表示用
       #followings=find.
-      #@follower_purposes = followings.purposes
-      #@follower_comments = purposes.comments()
+      @follow_users = current_user.followings
       #@comments = purposes.commnets()
     end
   end

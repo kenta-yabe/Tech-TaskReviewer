@@ -1,32 +1,67 @@
-<div　style="background-color: #99ccff; text-color: #0066cc">
-  <h2>目標詳細</h2>
-</div>
+ <div class="container-fluid">
+  <div class="row" style="background-color: #99ccff; color: #0066cc;">
+  <h2 class="ml-5 pl-3">目標詳細</h2>
+  </div>
+ </div>
 
 <!--目標名-->
-<div class="container">
+<div class="container mt-4">
     <div class="row">
         <small class="col-sm-2">目標No.</small>
         <small class="col-sm-1">目標</small>
-        <div class="offset-sm-5 col-sm-2"><%= link_to 'edit', edit_purpose_path(@purpose), class: 'btn btn-primary btn-sm' %></div>
-        <div class="col-sm-2"><%= link_to "Delete", @purpose, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %></div>
+        <div class="offset-sm-5 col-sm-4">
+            <div class='btn-toolbar'>
+                <div class="btn-group">
+                    <%= form_with(model: @purpose, local: true) do |f| %>
+                    　　　　<% if @purpose.open==true%>
+                            <%= f.hidden_field :open, value: false %>
+                            <%= hidden_field_tag :i, "3" %>
+                            <%= f.submit "非公開", class: 'btn btn-secondary btn-sm' %>
+                          <% else %>
+                            <%= f.hidden_field :open, value: true%>
+                            <%= hidden_field_tag :i, "3" %>
+                            <%= f.submit "公開", class: 'btn btn-primary btn-sm'%>
+                          <% end %>
+                    <%end%> 
+                    <%= link_to 'edit', edit_purpose_path(@purpose), class: 'btn btn-warning btn-sm ml-2' %>
+                    <%= link_to "Delete", @purpose, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm ml-2' %>
+                </div>
+            </div>
+        </div>
     </div> 
-
-    <div class="row bordered">
-        <div class="col-sm-2"><%= @purpose.id %></div>
-        <div class="col-sm-8"><%= @purpose.content %></div>
-        <div class="col-sm-2"><button type="button" class="btn btn-primary">達成</button></div>
+    <div class="row  mt-2 mb-1" style="height: 60px; border: #99ccff 5px ridge;">
+        <div class="col-sm-1 mt-2" style="text-align: center;"><h3><%= @purpose.id %></h3></div>
+        <div class="offset-sm-1 col-sm-8 mt-2"><h3><%= @purpose.content %></h3></div>
+        <div class="col-sm-2 mt-2 "><%=link_to "達成" , done_purpose_path(@purpose), class: 'btn btn-success'%></div>
     </div>    
+
+<!--review button-->
+     <div class="row">
+        <div class="offset-sm-10 col-sm-2">
+           <%=link_to "Review" , review_purpose_path(@purpose), class: 'btn btn-info'%>
+        </div>
+    </div>
 </div>
+
+
+
 
 
 <!--目標関連のタスクリスト-->
-<div class="mt-4">
+ <div class="container mt-2" style="max-height : 600px; overflow: scroll; border: #99ccff 10px ridge;">
  <%= render 'tasks/tasklist', tasks: @tasks %>
 </div>
 <!--新規タスク登録フォーム-->
-<%= form_with(model: @task, local: true, class: "form-inline") do |f| %>
-        <div class="form-group">
-          <%= f.text_area :content, class: 'form-control', rows: 2 %>
-        </div>
-        <%= f.submit 'submit', class: 'btn btn-primary btn-sm' %>
-      <% end %>
+
+<div class="container mt-4">
+    <%= form_with(model: @task, local: true, class: "") do |f| %>
+            <div class="row">
+              <%= f.text_area :content, placeholder: "新規タスクの登録", class: "form-control col-sm-8 offset-sm-1", size: "60x1" %>
+               <%= hidden_field_tag :purpose_id, @task.purpose.id %>
+            <%= f.submit 'submit', class: 'btn btn-primary btn-sm col-sm-2' %>
+            </div>
+        <% end %>
+</div>
+
+
+

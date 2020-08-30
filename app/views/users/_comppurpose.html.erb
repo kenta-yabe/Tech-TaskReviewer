@@ -1,0 +1,32 @@
+<% if purposes.any? %>
+    <% purposes.each do |purpose| %>
+<!--目標名-->
+  <div class="container mt-4" style="max-height : 400px; overflow: scroll; border: #99ccff 6px  ridge;">
+      <div class="row  mt-2">
+          <div class="col-sm-2 mt-2" style="text-align: center;">No.<h3 class="ml-2"><%= purpose.id %></h3></div>
+          <div class="col-sm-5 mt-2">目標:<h3 class="ml-2"><%= purpose.content %></h3></div>
+          <small class="offset-sm-1 col-sm-3 mt-2 text-warning">達成期間:<%=purpose.start_day%>~<%=purpose.end_day%></small>
+      </div>    
+  <div class="row" style="border-top: #99ccff 3px  solid">
+    </div>
+  <!--review button-->
+       <div class="row mt-2">
+          <small class="col-sm-2">タスクNo.</small>
+          <small class="col-sm-2">タスク名</small>
+          <div class="offset-sm-5 col-sm-2">
+             <%=link_to "Review" , review_purpose_path(purpose), class: 'btn btn-info'%>
+          </div>
+        </div>
+
+  <!--目標関連のタスクリスト-->
+   <div class="container mt-2" style="max-height : 200px; overflow: scroll; border: #99ccff 3px;">
+   <%= render 'tasks/tasklist', tasks: purpose.tasks %>
+  </div>
+  </div>
+    <%end%>
+<%end%>
+
+
+
+  
+ 

@@ -1,0 +1,111 @@
+  <div class="container-fluid">
+  <div class="row" style="background-color: #99ccff; color: #0066cc;">
+    <%if current_user==@user%>
+        <h2 class="ml-5 pl-3">目標レビュー 目標:  <%= link_to @purpose.content, purpose_path(@purpose) %></h2>
+    <%else%> 
+        <h2 class="ml-5 pl-3">目標レビュー 目標:  <%= @purpose.content %></h2>
+    <%end%>
+  </div>
+ </div>
+
+
+<!--user_comment-->
+ <div class="container mt-4" style="max-height : 400px; overflow: scroll; border: #99ccff 10px ridge; background-color: #99ccff;">
+     <div class="row">
+         <div class="col-sm-6" style="background-color: #0066cc; color:white;">User comment: <%= @user.name %></div>
+     </div>
+     <div class="row">
+         <div class="col-sm-2">
+             <figure class="figure" style="text-align : center;">
+                 <img class="mt-2 rounded figure-img " src="<%= gravatar_url(@user, { size: 100 }) %>" alt="">
+                 <figcaption class="figure-caption"><%=link_to @user.name, user_path(@user) %>
+                 </figcaption>
+             </figure>
+         </div>
+         <div class="col-sm-10 mt-4">
+             <% if @user_reviews.any? %>
+             <% @user_reviews.each do |review| %>
+                 <div class="row">
+                      <div class="col-sm-11 border border-primary mb-1" style="min-height: 15px;">
+                        <%= review.content %>
+                     </div>
+                 </div>
+                 <div class="row mb-2">
+                     <small class="col-sm-6 mt-2" style="color:blue">投稿日時:<%= review.created_at.strftime("%Y/%m/%d %H:%M") %></small>
+                     <div class="offset-sm-2 col-sm-4 mt-2">
+                         <% if current_user==@user%>
+                             <%= link_to 'edit', edit_review_path(review,purpose_id: @purpose.id), class: 'btn btn-warning btn-sm' %>
+                             <%= link_to "Delete", review_path(review,purpose_id: @purpose.id), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+                         <%end%>
+                     </div>
+                 </div>
+             <%end%>
+             <%end%>
+         </div>
+     </div>
+ </div>
+ 
+ 
+<!--投稿フォーム-->
+<% if current_user==@user%>
+    <div class="container mt-4">
+        <%= form_with(model: current_user.reviews.build, local: true, class: "") do |f| %>
+            <div class="row">
+              <%= f.text_area :content, placeholder: "User commentの投稿", class: "form-control col-sm-8 offset-sm-1", size: "60x1"%>
+              <%= f.hidden_field :purpose_id, value: @purpose.id %>
+              <%= f.submit 'submit', class: 'btn btn-primary btn-sm col-sm-2' %>
+            </div>
+        <% end %>
+    </div>
+<%end%>
+            
+            
+<!--comment-->
+<div class="container mt-4" style="max-height : 400px; overflow: scroll; border: #99ccff 10px ridge; background-color: #99ccff;">
+    <div class="row">
+         <div class="col-sm-6" style="background-color: #0066cc; color:white;">他ユーザーからのComment</div>
+    </div>
+    <% if @reviews.any? %>
+    <% @reviews.each do |review| %>
+            <div class="row  border border-primary">
+              <div class="col-sm-2 mt-2" style="text-align : center;">
+                    <figure class="figure">
+                         <img class="mt-2 rounded figure-img " src="<%= gravatar_url(review.user, { size: 70 }) %>" alt="">
+                         <figcaption class="figure-caption"><%=link_to review.user.name, user_path(review.user) %>
+                         </figcaption>
+                    </figure>
+              </div>
+              <div class="col-sm-10 mt-4">
+                  <div class="row ml-2 mt-2">
+                     <div class="col-sm-11 border border-primary mb-1" style="min-height: 15px;">
+                        <%= review.content %>
+                     </div>
+                 </div>
+                 <div class="row ml-1 mt-2">
+                        <small class="col-sm-6" style="color:blue">投稿日時:<%= review.created_at.strftime("%Y/%m/%d %H:%M") %></small>
+                        <% if current_user==@user%>
+                            <div class="offset-sm-2 col-sm-4">
+                             <%= link_to 'edit', edit_review_path(review), class: 'btn btn-warning btn-sm' %>
+                             <%= link_to "Delete", review_path(review), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+                            </div>
+                        <%end%>
+                 </div>
+              </div>
+          </div>
+    <%end%>
+    <%end%>
+</div>
+
+                             
+<!--投稿フォーム-->
+<% if !(current_user == @user) %>
+<div class="container mt-4">
+    <%= form_with(model: current_user.reviews.build, local: true, class: "") do |f| %>
+        <div class="row">
+          <%= f.text_area :content, placeholder: "この目標へコメントを投稿する", class: "form-control col-sm-8 offset-sm-1", size: "60x1" %>
+          <%= f.hidden_field :purpose_id, value: @purpose.id %>
+          <%= f.submit 'submit', class: 'btn btn-primary btn-sm col-sm-2' %>
+        </div>
+    <% end %>
+</div>
+<%end%>
