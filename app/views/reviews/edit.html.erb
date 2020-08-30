@@ -8,5 +8,6 @@
 <%= form_with(model: @review, local: true) do |f| %>
   <%= f.label :content, 'コメント' %>
   <%= f.text_field :content %>
+  <%= hidden_field_tag :purpose_id, @review.purpose.id %>
   <%= f.submit '編集完了' %>
 <% end %>

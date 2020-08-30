@@ -83,10 +83,10 @@
                  </div>
                  <div class="row ml-1 mt-2">
                         <small class="col-sm-6" style="color:blue">投稿日時:<%= review.created_at.strftime("%Y/%m/%d %H:%M") %></small>
-                        <% if current_user==@user%>
+                        <% if current_user==review.user%>
                             <div class="offset-sm-2 col-sm-4">
-                             <%= link_to 'edit', edit_review_path(review), class: 'btn btn-warning btn-sm' %>
-                             <%= link_to "Delete", review_path(review), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+                             <%= link_to 'edit', edit_review_path(review, purpose_id: @purpose.id), class: 'btn btn-warning btn-sm' %>
+                             <%= link_to "Delete", review_path(review, purpose_id: @purpose.id), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
                             </div>
                         <%end%>
                  </div>

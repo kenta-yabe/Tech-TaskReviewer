@@ -11,7 +11,7 @@ class ReviewsController < ApplicationController
   end
 
   def destroy
-    @purpose =　Purpose.find(params[:purpose_id])
+    @purpose = Purpose.find_by(id: params[:purpose_id])
     review = current_user.reviews.find(params[:id])
     review.destroy if review
     flash[:success] = 'コメントを削除しました。'
@@ -19,7 +19,7 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-    @review = current_user.reviews.find_by(id: params[:id])
+    @review = current_user.reviews.find(params[:id])
     @purpose = Purpose.find_by(id: params[:purpose_id])
      unless @review
       redirect_to review_purpose_path(@purpose) 
@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    @review = current_user.reviews.find_by(id: params[:id])
+    @review = current_user.reviews.find(params[:id])
     @purpose = Purpose.find_by(id: params[:purpose_id])
     
         if @review.update(review_params)
@@ -42,6 +42,6 @@ class ReviewsController < ApplicationController
   private
   
   def review_params
-    params.require(:review).permit(:purpose_id, :content)
+    params.require(:review).permit(:purpose_id, :content, :id)
   end
 end

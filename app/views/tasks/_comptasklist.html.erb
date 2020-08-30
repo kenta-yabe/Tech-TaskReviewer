@@ -1,0 +1,25 @@
+  <table class="table table-striped">
+    <thead>
+      <tr class="d-flex">
+        <th class="col-sm-2" style="text-align: center;">No.</th>
+        <th class="col-sm-10">タスク</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+        <% tasks.each do |task| %>
+        <tr class="d-flex">
+          <td class="col-sm-2" style="text-align: center;"><%=task.id%></td>
+          <td class="col-sm-10">
+               <% if task.check==true%> 
+                <div style="text-decoration: line-through;">
+                 <%= task.content %>
+                </div>
+               <%else%>
+                <%= task.content %>
+               <%end%>
+          </td>
+        </tr>
+        <% end %>        
+    </tbody>
+  </table>
