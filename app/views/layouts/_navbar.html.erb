@@ -1,7 +1,7 @@
 <header class="mb-0">
   <!-- タイトル-->
   <nav class="navbar navbar-expand-sm navbar-light pt-0 pb-0" style="background-color:#838d93;">
-  　<a class="navbar-brand text-light ml-4" href='/'>Task Reviewer</a>
+  　<a class="navbar-brand text-light ml-4" href="/"> <i class="fas fa-tasks"></i>  Task Reviewer</a>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
@@ -21,13 +21,13 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav w-100 nav-justified">
-          <li class="nav-item"><a href="/" class="nav-link">HOME</a></li>
-          <li class="nav-item"><a href="/reviewlists" class="nav-link">ReviewList</a></li>
+          <li class="nav-item"><a href="/" class="nav-link"><i class="fas fa-home"></i> HOME</a></li>
+          <li class="nav-item"><a href="/reviewlists" class="nav-link"><i class="fas fa-comments"></i> ReviewList</a></li>
           <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">MyPage</a>
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"><i class="far fa-address-book"></i> MyPage</a>
             <ul class="dropdown-menu dropdown-menu-right">
-              <li class="dropdown-item"><%= link_to current_user.name, user_path(current_user) %></li>
-              <li class="dropdown-item"><%= link_to '完了タスク一覧', complist_user_path(current_user) %></li>
+              <li class="dropdown-item"><i class="fas fa-user"></i> <%= link_to current_user.name, user_path(current_user) %></li>
+              <li class="dropdown-item"><i class="far fa-check-circle"></i> <%= link_to '完了タスク一覧', complist_user_path(current_user) %></li>
               <li class="dropdown-divider"></li>
               <li class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete %></li>
             </ul>
