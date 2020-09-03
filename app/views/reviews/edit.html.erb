@@ -1,15 +1,18 @@
  <div class="container-fluid">
-  <div class="row" style="background-color: #99ccff; color: #0066cc;">
-  <h2 class="ml-5 pl-3">レビューコメントの編集</h2>
+  <div class="row pt-2 pb-1" style="background-color: #838d93; color: white;">
+  <h2 class="font-weight-bold ml-5 pl-3">レビューコメントの編集</h2>
   </div>
  </div>
 
-
-<%= form_with(model: @review, local: true) do |f| %>
-  <%= render 'layouts/error_messages', model: f.object %>
-
-  <%= f.label :content, 'レビューコメント' %>
-  <%= f.text_field :content %>
-  <%= hidden_field_tag :purpose_id, @review.purpose.id %>
-  <%= f.submit '編集完了' %>
-<% end %>
+<div class="row text-secondary mt-4">
+  <div class="col-sm-6 offset-sm-3">
+   <%= form_with(model: @review, local: true) do |f| %>
+     <%= render 'layouts/error_messages', model: f.object %>
+   
+     <%= f.label :content, 'レビューコメント' , class: 'text-secondary'%>
+     <%= f.text_field :content ,class: "form-control"%>
+     <%= hidden_field_tag :purpose_id, @review.purpose.id %>
+     <%= f.submit '編集完了' , class: 'mt-4 btn btn-secondary btn-block'%>
+   <% end %>
+  </div>
+</div>

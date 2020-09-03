@@ -1,24 +1,26 @@
   <div class="container-fluid">
-  <div class="row" style="background-color: #99ccff; color: #0066cc;">
+  <div class="row  pt-2" style="background-color: #838d93; color: white;">
     <%if current_user==@user%>
-        <h2 class="ml-5 pl-3">目標レビュー 目標:  <%= link_to @purpose.content, purpose_path(@purpose) %></h2>
+        <h2 class="font-weight-bold ml-5 pl-3 ml-4">目標レビュー</h2>
+        <h2 class="font-weight-bold">目標:  <%= link_to @purpose.content, purpose_path(@purpose) ,class: "text-light"%></h2>
     <%else%> 
-        <h2 class="ml-5 pl-3">目標レビュー 目標:  <%= @purpose.content %></h2>
+        <h2 class="font-weight-bold ml-5 pl-3">目標レビュー</h2>
+        <h2 class="font-weight-bold ml-4">目標:  <%= @purpose.content %></h2>
     <%end%>
   </div>
  </div>
 
 
 <!--user_comment-->
- <div class="container mt-4" style="max-height : 400px; overflow: scroll; border: #99ccff 10px ridge; background-color: #99ccff;">
+ <div class="container mt-4" style="max-height : 400px; overflow: scroll; border: #838d93 10px solid; background-color: #838d93; color: white;">
      <div class="row">
-         <div class="col-sm-6" style="background-color: #0066cc; color:white;">User review: <%= @user.name %></div>
+         <div class="ml-4 mt-2" style="color:white;"><h4>User review: <%= @user.name %></h4></div>
      </div>
      <div class="row">
          <div class="col-sm-2">
              <figure class="figure" style="text-align : center;">
                  <img class="mt-2 rounded figure-img " src="<%= gravatar_url(@user, { size: 100 }) %>" alt="">
-                 <figcaption class="figure-caption"><%=link_to @user.name, user_path(@user) %>
+                 <figcaption class="figure-caption"><%=link_to @user.name, user_path(@user), class: "text-light" %>
                  </figcaption>
              </figure>
          </div>
@@ -26,20 +28,22 @@
              <% if @user_reviews.any? %>
              <% @user_reviews.each do |review| %>
                  <div class="row">
-                      <div class="col-sm-11 border border-primary mb-1" style="min-height: 15px;">
+                      <div class="col-sm-11  mb-1 ml-4 bg-light text-dark" style="overflow: scroll; min-height: 15px;">
                         <%= review.content %>
                      </div>
                  </div>
                  <div class="row mb-2">
-                     <small class="col-sm-6 mt-2" style="color:blue">投稿日時:<%= review.created_at.strftime("%Y/%m/%d %H:%M") %></small>
-                     <div class="offset-sm-2 col-sm-4 mt-2">
+                     <small class="col-sm-6 mt-2 ml-3">投稿日時:<%= review.created_at.strftime("%Y/%m/%d %H:%M") %></small>
+                     <div class="offset-sm-3 mt-2">
                          <% if current_user==@user%>
-                             <%= link_to 'edit', edit_review_path(review,purpose_id: @purpose.id), class: 'btn btn-warning btn-sm' %>
-                             <%= link_to "Delete", review_path(review,purpose_id: @purpose.id), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+                             <%= link_to 'edit', edit_review_path(review,purpose_id: @purpose.id), class: 'btn btn-outline-light btn-sm' %>
+                             <%= link_to "Delete", review_path(review,purpose_id: @purpose.id), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-light btn-sm' %>
                          <%end%>
                      </div>
                  </div>
              <%end%>
+             <%else%>
+                 <div class="row"><div class="offset-sm-2">コメントはありません</div></div>
              <%end%>
          </div>
      </div>
@@ -54,7 +58,7 @@
             <div class="row">
               <%= f.text_area :content, placeholder: "User review commentの投稿　(※空文字禁止・字数制限:100字)", class: "form-control col-sm-8 offset-sm-1", size: "60x1"%>
               <%= f.hidden_field :purpose_id, value: @purpose.id %>
-              <%= f.submit 'submit', class: 'btn btn-primary btn-sm col-sm-2' %>
+              <%= f.submit 'submit', class: 'btn btn-secondary btn-sm col-sm-2' %>
             </div>
         <% end %>
     </div>
@@ -62,32 +66,32 @@
             
             
 <!--comment-->
-<div class="container mt-4" style="max-height : 400px; overflow: scroll; border: #99ccff 10px ridge; background-color: #99ccff;">
+<div class="container mt-4" style="max-height : 400px; overflow: scroll; border: #838d93 10px solid; background-color: #838d93; color: white;">
     <div class="row">
-         <div class="col-sm-6" style="background-color: #0066cc; color:white;">他ユーザーからのReview comments</div>
+         <div class="ml-4 mt-2" style="color:white;"><h4>他ユーザーからのReview comments</h4></div>
     </div>
     <% if @reviews.any? %>
     <% @reviews.each do |review| %>
-            <div class="row  border border-primary">
+            <div class="row" style="border-bottom: solid 10px #838d93;">
               <div class="col-sm-2 mt-2" style="text-align : center;">
                     <figure class="figure">
                          <img class="mt-2 rounded figure-img " src="<%= gravatar_url(review.user, { size: 70 }) %>" alt="">
-                         <figcaption class="figure-caption"><%=link_to review.user.name, user_path(review.user) %>
+                         <figcaption class="figure-caption"><%=link_to review.user.name, user_path(review.user), class: "text-light"  %>
                          </figcaption>
                     </figure>
               </div>
               <div class="col-sm-10 mt-4">
                   <div class="row ml-2 mt-2">
-                     <div class="col-sm-11 border border-primary mb-1" style="min-height: 15px;">
+                     <div class="col-sm-11 bg-light mb-1 text-dark" style="overflow: scroll; min-height: 15px;">
                         <%= review.content %>
                      </div>
                  </div>
                  <div class="row ml-1 mt-2">
-                        <small class="col-sm-6" style="color:blue">投稿日時:<%= review.created_at.strftime("%Y/%m/%d %H:%M") %></small>
+                        <small class="col-sm-6 ml-3">投稿日時:<%= review.created_at.strftime("%Y/%m/%d %H:%M") %></small>
                         <% if current_user==review.user%>
-                            <div class="offset-sm-2 col-sm-4">
-                             <%= link_to 'edit', edit_review_path(review, purpose_id: @purpose.id), class: 'btn btn-warning btn-sm' %>
-                             <%= link_to "Delete", review_path(review, purpose_id: @purpose.id), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm' %>
+                            <div class="offset-sm-3">
+                             <%= link_to 'edit', edit_review_path(review, purpose_id: @purpose.id), class: 'btn btn-outline-light btn-sm' %>
+                             <%= link_to "Delete", review_path(review, purpose_id: @purpose.id), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-light btn-sm' %>
                             </div>
                         <%end%>
                  </div>
@@ -106,7 +110,7 @@
         <div class="row">
           <%= f.text_area :content, placeholder: "この目標へReview commentを投稿する　(※空文字禁止・字数制限:100字)", class: "form-control col-sm-8 offset-sm-1", size: "60x1" %>
           <%= f.hidden_field :purpose_id, value: @purpose.id %>
-          <%= f.submit 'submit', class: 'btn btn-primary btn-sm col-sm-2' %>
+          <%= f.submit 'submit', class: 'btn btn-secondary btn-sm col-sm-2' %>
         </div>
     <% end %>
 </div>

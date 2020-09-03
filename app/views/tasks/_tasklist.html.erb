@@ -1,7 +1,7 @@
 
    <table class="table table-striped">
     <thead>
-      <tr class="d-flex">
+      <tr class="d-flex text-secondary">
         <th class="col-sm-1">No.</th>
         <th class="col-sm-1 pl-0 pr-0">check</th>
         <th class="col-sm-10">タスク</th>
@@ -11,25 +11,25 @@
     <tbody>
         <% tasks.each do |task| %>
         <tr class="d-flex">
-           <td class="col-sm-2">
-              <div style="text-align : left ;">
-              <%= form_with(model: task, local: true) do |f| %>
-                  <%=task.id%>
-            　　　　<% if task.check==true%>
-                    <%= f.hidden_field :check, value: false %>
-                    <%= hidden_field_tag :purpose_id, task.purpose.id %>
-                    <%= hidden_field_tag :i, "2" %>
-                    <%= f.submit "戻す", class: 'btn btn-dark btn-sm'%>
-                  <% else %>
-                    <%= f.hidden_field :check, value: true%>
-                    <%= hidden_field_tag :purpose_id, task.purpose.id%>
-                    <%= hidden_field_tag :i, "2" %>
-                    <%= f.submit "完了", class: 'btn btn-light btn-sm'%>
-                  <% end %>
+           <td class="col-sm-1 pl-4"> <%=task.id%></td>
+           <td class="col-sm-1 ml-0 pl-0" style="text-align:left;">
+              <div>
+                  <%= form_with(model: task, local: true) do |f| %>
+                    <% if task.check==true%>
+                      <%= f.hidden_field :check, value: false %>
+                      <%= hidden_field_tag :purpose_id, task.purpose.id %>
+                      <%= hidden_field_tag :i, "2" %>
+                      <%= f.submit "戻す", class: 'btn btn-dark btn-sm'%>
+                    <% else %>
+                      <%= f.hidden_field :check, value: true%>
+                      <%= hidden_field_tag :purpose_id, task.purpose.id%>
+                      <%= hidden_field_tag :i, "2" %>
+                      <%= f.submit "完了", class: 'btn btn-light btn-sm'%>
+                    <% end %>
               <%end%>
              </div>
           </td>
-          <td class="col-sm-7">
+          <td class="col-sm-8" style="overflow: scroll;">
                <% if task.check==true%> 
                 <div style="text-decoration: line-through;">
                  <%= task.content %>
@@ -38,7 +38,7 @@
                 <%= task.content %>
                <%end%>
           </td>
-          <td class="col-sm-3">
+          <td class="">
                <div class='btn-toolbar'>
                 <div class="btn-group">
                    <%= form_with(model: task, local: true) do |f| %>
@@ -51,11 +51,20 @@
                     <%= f.hidden_field :priority, value: true%>
                     <%= hidden_field_tag :purpose_id, task.purpose.id %>
                     <%= hidden_field_tag :i, "1" %>
-                    <%= f.submit "優先" ,class: 'btn btn-primary btn-sm'%>
+                    <%= f.submit "優先" ,class: 'btn btn-light btn-sm'%>
                    <% end %>
-                    <% end %>
-                  <%= link_to 'edit', edit_task_path(task,purpose_id: task.purpose.id), class: 'btn btn-warning btn-sm ml-2' %>
-                  <%= link_to "Delete", task_path(task,purpose_id: task.purpose.id), method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm ml-2' %>
+                   <% end %>
+                   <div class="dropdown ml-2"><button type="button" id="dropdown3" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" ria-haspopup="true" aria-expanded="false">
+                       Menu
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdown3">
+                      <div class="dropdown-item">
+                        <%= link_to 'edit',  edit_task_path(task,purpose_id: task.purpose.id), class: 'dropdown-item' %>
+                         <div class="dropdown-divider"></div>
+                        <%= link_to "Delete",  task_path(task,purpose_id: task.purpose.id), method: :delete, data: { confirm: "You sure?" }, class: 'text-danger dropdown-item' %>
+                      </div>
+                    </div>
+                  </div> 
                 </div>
                </div>
           </td>

@@ -1,46 +1,50 @@
  <div class="container-fluid">
-  <div class="row" style="background-color: #99ccff; color: #0066cc;">
-  <h2 class="ml-5 pl-3">目標詳細</h2>
+  <div class="row pt-2 pb-1" style="background-color: #838d93; color: white;">
+  <h2 class="font-weight-bold ml-5 pl-3">目標詳細</h2>
   </div>
  </div>
 
 <!--目標名-->
 <div class="container mt-4">
-    <div class="row">
+    <div class="row text-secondary">
         <small class="col-sm-2">目標No.</small>
         <small class="col-sm-1">目標</small>
-        <div class="offset-sm-5 col-sm-4">
+        <div class="offset-sm-6 mb-2">
             <div class='btn-toolbar'>
                 <div class="btn-group">
                     <%= form_with(model: @purpose, local: true) do |f| %>
                     　　　　<% if @purpose.open==true%>
                             <%= f.hidden_field :open, value: false %>
                             <%= hidden_field_tag :i, "3" %>
-                            <%= f.submit "非公開", class: 'btn btn-secondary btn-sm' %>
+                            <%= f.submit "非公開", class: 'btn btn-outline-secondary btn-sm' %>
                           <% else %>
                             <%= f.hidden_field :open, value: true%>
                             <%= hidden_field_tag :i, "3" %>
-                            <%= f.submit "公開", class: 'btn btn-primary btn-sm'%>
+                            <%= f.submit "公開", class: 'btn btn-secondary btn-sm'%>
                           <% end %>
-                    <%end%> 
-                    <%= link_to 'edit', edit_purpose_path(@purpose), class: 'btn btn-warning btn-sm ml-2' %>
-                    <%= link_to "Delete", @purpose, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-sm ml-2' %>
+                    <%end%>
+                    <%=link_to "Review" , review_purpose_path(@purpose), class: 'btn btn-info btn-sm'%>
+                    <div class="dropdown"><button type="button" id="dropdown1" class="btn btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" ria-haspopup="true" aria-expanded="false">
+                       Menu
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdown1">
+                          <div class="dropdown-item">
+                            <%= link_to 'edit', edit_purpose_path(@purpose), class: 'dropdown-item' %>
+                             <div class="dropdown-divider"></div>
+                            <%= link_to "Delete", @purpose, method: :delete, data: { confirm: "You sure?" }, class: 'text-danger dropdown-item' %>
+                             <div class="dropdown-divider"></div>
+                            <%=link_to "達成" , done_purpose_path(@purpose), class: 'text-success dropdown-item'%>
+                          </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div> 
-    <div class="row  mt-2 mb-1" style="height: 60px; border: #99ccff 5px ridge;">
+    <div class="row  mb-1" style="background-color: #838d93; color: white;">
         <div class="col-sm-1 mt-2" style="text-align: center;"><h3><%= @purpose.id %></h3></div>
         <div class="offset-sm-1 col-sm-8 mt-2"><h3><%= @purpose.content %></h3></div>
-        <div class="col-sm-2 mt-2 "><%=link_to "達成" , done_purpose_path(@purpose), class: 'btn btn-success'%></div>
     </div>    
-
-<!--review button-->
-     <div class="row">
-        <div class="offset-sm-10 col-sm-2">
-           <%=link_to "Review" , review_purpose_path(@purpose), class: 'btn btn-info'%>
-        </div>
-    </div>
 </div>
 
 
@@ -48,7 +52,7 @@
 
 
 <!--目標関連のタスクリスト-->
- <div class="container mt-2" style="max-height : 600px; overflow: scroll; border: #99ccff 10px ridge;">
+<div class="container mt-2" style="max-height : 600px; overflow: scroll; border: #838d93 10px solid;">
  <%= render 'tasks/tasklist', tasks: @tasks %>
 </div>
 <!--新規タスク登録フォーム-->
@@ -59,7 +63,7 @@
             <div class="row">
               <%= f.text_area :content, placeholder: "新規タスクの登録　(※空文字禁止・字数制限:100字)", class: "form-control col-sm-8 offset-sm-1", size: "60x1" %>
                <%= hidden_field_tag :purpose_id, @task.purpose.id %>
-            <%= f.submit 'submit', class: 'btn btn-primary btn-sm col-sm-2' %>
+            <%= f.submit 'submit', class: 'btn btn-secondary btn-sm col-sm-2' %>
             </div>
         <% end %>
 </div>

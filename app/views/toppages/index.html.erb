@@ -2,32 +2,31 @@
 <% if logged_in? %>
 <!--ログイン時-->
  <div class="container-fluid">
-  <div class="row" style="background-color: #99ccff; color: #0066cc;">
+  <div class="row pt-2 pb-1" style="background-color: #838d93; color: white;">
   <h2 class="ml-5 pl-3">HOME</h2>
   </div>
  </div>
 
  <div class="container mt-4">
    <div class="row">
-    <h3 class="col-sm-3" style="color: #0066cc;">優先タスクリスト</h3>
+    <h3 class="font-weight-bold text-secondary">優先タスクリスト</h3>
    </div>
  </div> 
 
 
 
- <div class="container mt-2" style="max-height : 600px; overflow: scroll; border: #99ccff 10px ridge;">
-     
-     <%= render 'priority-tasklist', purposes: @purposes %>
+ <div class="container mt-2" style="max-height : 600px; overflow: scroll; border: #838d93 15px solid;">
+    <%= render 'priority-tasklist', purposes: @purposes %>
  </div>
  
  
  <div class="container mt-4">
    <div class="row">
-    <h3 class="col-sm-5" style="color: #0066cc;">フォローユーザー目標リスト</h3>
+    <h3 class="font-weight-bold text-secondary" >フォローユーザー目標リスト</h3>
    </div>
  </div> 
  
-  <div class="container mt-2" style="max-height : 600px; overflow: scroll; border: #99ccff 10px ridge;">
+  <div class="container mt-2" style="max-height : 600px; overflow: scroll; border: #838d93 10px solid;">
         <% @follow_users.each do |user| %>
             <%= render 'reviewlists/purpose_review', purposes: user.purposes.where(open: true) %>
          <%end%>
@@ -46,12 +45,12 @@
     </div>
  </div>
       <!---------------------------->
- <div class="container mt-2">
+ <div class="container mt-2 mb-4">
     <div class="card-group">
       <!---->
      <div class="card">
        <div class="card-header text-center">
-        目標一覧
+        目標の一覧表示
        </div>
        <div class="card-body">
     　　　　<p>様々な利用者の目指す目標が、一覧で見れる。目標建ての参考や、自分と同じような目標を追う人が見つかる。</p>
@@ -76,9 +75,21 @@
        </div>
       </div>
     </div>
-  
+</div>    
+<div class="container mt-2 border">  
+    <div class="mt-4 row">
+      <div class="col-sm-2 text-center">
+       <h4 style="border-bottom: solid 3px #838d93;">使い方</h4>
+      </div>
+    </div>
+    <div class="mt-2 row">
+     <p style="line-height:35px;">　・　SignUp後、各ユーザーページから新規目標を作成することができます。<br>　・　作成した目標に関するタスクを、目標の詳細ページで作成することができます。<br>　・　作成した目標に対し、レビューコメントを投稿することができます。また、他ユーザーの公開目標に対してもレビューを投稿することが可能です。<br>　・　作成した目標は、デフォルトで非公開設定になっております。他ユーザーへ公開する場合は、各目標詳細ページ内の"公開ボタンを"押してください。<br>　・　タスクに設置してある"優先ボタン"を押すと、トップページ上の優先タスクリストへタスクが表示されるようになります。<br>　・　目標レビュー一覧から、他ユーザーのフォローを行うことができます。また、フォローしたユーザーの公開目標は、トップページに表示されます。</p>
+    </div>
+</div>
+
+ <div class="container mt-2">
     <div class="mt-4 text-center">
-      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-primary' %>
+      <%= link_to 'Sign up now!', signup_path, class: 'btn btn-lg btn-secondary' %>
     </div>
  </div>
 <% end %>

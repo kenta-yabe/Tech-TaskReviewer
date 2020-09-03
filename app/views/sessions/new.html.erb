@@ -1,11 +1,11 @@
  <div class="container-fluid">
-  <div class="row" style="background-color: #99ccff; color: #0066cc;">
-  <h2 class="ml-5 pl-3">login</h2>
+  <div class="row pt-2 pb-1" style="background-color: #838d93; color: white;">
+  <h2 class="font-weight-bold ml-5 pl-3">login</h2>
   </div>
  </div>
 
 
-<div class="row">
+<div class="row text-secondary">
   <div class="col-sm-6 offset-sm-3">
 
     <%= form_with(url: login_path, scope: :session, local: true) do |f| %>
@@ -20,7 +20,7 @@
         <%= f.password_field :password, class: 'form-control' %>
       </div>
 
-      <%= f.submit 'Log in', class: 'btn btn-primary btn-block' %>
+      <%= f.submit 'Log in', class: 'btn btn-secondary btn-block' %>
     <% end %>
 
     <p>New user? <%= link_to 'Sign up now!', signup_path %></p>

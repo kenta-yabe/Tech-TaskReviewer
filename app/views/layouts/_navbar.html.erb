@@ -1,6 +1,6 @@
 <header class="mb-0">
   <!-- タイトル-->
-  <nav class="navbar navbar-expand-sm navbar-light" style="background-color:#0099ff;">
+  <nav class="navbar navbar-expand-sm navbar-light pt-0 pb-0" style="background-color:#838d93;">
   　<a class="navbar-brand text-light ml-4" href="/">Task Reviewer</a>
 
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
@@ -15,14 +15,7 @@
   </nav>
   
   <% if logged_in? %>
-  <!--
-    <div class="d-flex">
-      <a href="/" class="flex-fill text-center" style="background-color: #0066cc; color: #fff;">HOME</a>
-      <button type="button" class="flex-fill">ReviewList</button>
-      <button type="button" class="flex-fill">MyPage</button>
-    </div>
-    -->
-    <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark pt-0 pb-0">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -34,7 +27,7 @@
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">MyPage</a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li class="dropdown-item"><%= link_to current_user.name, user_path(current_user) %></li>
-              <li class="dropdown-item"><%= link_to 'comp.Task', complist_user_path(current_user) %></li>
+              <li class="dropdown-item"><%= link_to '完了タスク一覧', complist_user_path(current_user) %></li>
               <li class="dropdown-divider"></li>
               <li class="dropdown-item"><%= link_to 'Logout', logout_path, method: :delete %></li>
             </ul>
