@@ -1,7 +1,7 @@
 <% if purposes.any? %>
     <% purposes.each do |purpose| %>
 <!--目標名-->
-  <div class="container mt-4 text-secondary" style="max-height : 400px; overflow: scroll; border: #838d93 10px solid;">
+  <div class="container mt-4 text-secondary" style="max-height : 400px; overflow: auto; border: #838d93 10px solid;">
       <div class="row" style="background-color: #838d93; color: white;">
           <div class="col-sm-2 mt-2" style="text-align: center;">No.</div>
           <div class="col-sm-7 mt-2">目標</div>
@@ -16,7 +16,7 @@
       </div>
       
   <!--目標関連のタスクリスト-->
-   <div class="container mt-2" style="max-height : 200px; overflow: scroll; border: #99ccff 3px;">
+   <div class="container mt-2" style="max-height : 200px; overflow: auto; border: #99ccff 3px;">
    <%= render 'tasks/comptasklist', tasks: purpose.tasks %>
   </div>
   </div>

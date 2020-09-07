@@ -15,7 +15,7 @@
 
 
 
- <div class="container mt-2" style="max-height : 600px; overflow: scroll; border: #838d93 15px solid;">
+ <div class="container mt-2" style="max-height : 600px; overflow: auto; border: #838d93 15px solid;">
     <%= render 'priority-tasklist', purposes: @purposes %>
  </div>
  
@@ -26,7 +26,7 @@
    </div>
  </div> 
  
-  <div class="container mt-2" style="max-height : 600px; overflow: scroll; border: #838d93 10px solid;">
+  <div class="container mt-2" style="max-height : 600px; overflow: auto; border: #838d93 10px solid;">
         <% @follow_users.each do |user| %>
             <%= render 'reviewlists/purpose_review', purposes: user.purposes.where(open: true) %>
          <%end%>

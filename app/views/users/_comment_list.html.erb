@@ -1,6 +1,6 @@
 
 <% if review_purposes.any? %>
-   <% review_purposes.each do |purpose| %>
+   <% review_purposes.uniq.each do |purpose| %>
           <div class="row" style="border-bottom: solid 10px #838d93; color:white;">
               <div class="col-sm-2 mt-2" style="text-align : center;">
                     <figure class="figure">
@@ -19,7 +19,7 @@
                         </div>
                   </div>
                   <div class="row ml-2 mt-2">
-                     <div class="col-sm-11 bg-light text-dark" style="overflow: scroll; min-height: 15px;">
+                     <div class="col-sm-11 bg-light text-secondary" style="overflow: auto;">
                         <% if purpose.reviews.where(user_id: user.id).any? %>
                         <%= purpose.reviews.where(user_id: user.id).last.content %>
                         <%end%>

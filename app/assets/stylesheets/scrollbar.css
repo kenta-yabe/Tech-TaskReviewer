@@ -1,0 +1,11 @@
+/* スクロールの幅の設定 */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+
+/* スクロールのつまみ部分の設定 */
+::-webkit-scrollbar-thumb {
+  background-color:#17a2b8;
+}

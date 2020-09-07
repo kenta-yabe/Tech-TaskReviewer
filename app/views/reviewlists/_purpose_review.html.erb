@@ -1,20 +1,20 @@
  <% purposes.each do |purpose| %>
-                    <div class="row" style="border: solid 5px #838d93;">
-                         <div class="col-sm-2 " style="background-color:#838d93; border-bottom: solid 4px white;">
-                             <div class="ml-3 pl-2 mt-3" s>
+                    <div class="row border-bottom border-light" style="background-color: #838d93;">
+                         <div class="col-sm-2">
+                             <div class="ml-4 mt-3">
                                <figure class="figure">
                                   <img class="mt-2 rounded figure-img " src="<%= gravatar_url(purpose.user, { size: 80 }) %>" alt="">
                                   <figcaption class="figure-caption"><%=link_to purpose.user.name, user_path(purpose.user), class: "text-light"%>
                                   </figcaption>
                                </figure>
                               </div>
-                              <div class="ml-3 pl-2 mb-3">
+                              <div class="ml-4 mb-3">
                                 <%= render 'relationships/follow_button', user: purpose.user %>
                               </div>
                          </div>
                          
-                         <div class="col-sm-10">
-                                    <div class="row" style="color:white; background-color: #838d93 ;">
+                         <div class="col-sm-10 text-light">
+                                    <div class="row">
                                         <small class="col-sm-2 mt-3">purpose:</small>
                                         <div class="col-sm-8 mt-2" style="text_align: center;">
                                             <h3><%=purpose.content%></h3>
@@ -25,13 +25,13 @@
                                     </div>
                                      <!--最新userreviwcomment-->
                                      <div class="row mt-2">
-                                         <small class="col-sm-5 text-secondary ml-4" style="color:blue"><small>ユーザー最新Review comment</small></small>
+                                         <small class="col-sm-5 ml-4"><small>ユーザー最新Review comment</small></small>
                                          <% if purpose.reviews.where(user_id: purpose.user.id).any? %>
-                                            <small class="col-sm-6  text-secondary ml-4" style="color:blue"><small>投稿日時:<%= purpose.reviews.where(user_id: purpose.user.id).last.created_at.strftime("%Y/%m/%d %H:%M") %></small></small>
+                                            <small class="col-sm-6 ml-4"><small>投稿日時:<%= purpose.reviews.where(user_id: purpose.user.id).last.created_at.strftime("%Y/%m/%d %H:%M") %></small></small>
                                         <%end%>
                                      </div>
                                      <div class="row ml-2">
-                                         <div class="col-sm-11 ml-4 border border-secondary mb-1" style="overflow: scroll;">
+                                         <div class="col-sm-11 ml-4 mb-1  border border-light bg-light text-secondary" style="overflow: auto;">
                                             <% if purpose.reviews.where(user_id: purpose.user.id).any? %>
                                             <%= purpose.reviews.where(user_id: purpose.user.id).last.content %>
                                             <%end%>
@@ -40,13 +40,13 @@
 
                                      <!--最新comment-->
                                      <div class="row mt-2">
-                                          <small class="col-sm-5 ml-4 text-secondary" style="color:blue"><small>他ユーザー最新Review comment</small></small>
+                                          <small class="col-sm-5 ml-4"><small>他ユーザー最新Review comment</small></small>
                                           <% if purpose.reviews.where.not(user_id: purpose.user.id).any? %>
-                                          <small class="col-sm-6 ml-4 text-secondary" style="color:blue"><small>投稿日時:<%= purpose.reviews.where.not(user_id: purpose.user.id).last.created_at.strftime("%Y/%m/%d %H:%M") %></small></small>
+                                          <small class="col-sm-6 ml-4"><small>投稿日時:<%= purpose.reviews.where.not(user_id: purpose.user.id).last.created_at.strftime("%Y/%m/%d %H:%M") %></small></small>
                                         <%end%>
                                      </div>
                                      <div class="row ml-2">
-                                         <div class="col-sm-11 ml-4 border border-secondary" style="overflow: scroll;">
+                                         <div class="col-sm-11 ml-4  border border-light bg-light text-secondary" style="overflow: auto;">
                                             <% if purpose.reviews.where.not(user_id: purpose.user.id).any? %>
                                             <%= purpose.reviews.where.not(user_id: purpose.user.id).last.content %>
                                         　  <%end%>

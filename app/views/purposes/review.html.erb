@@ -12,7 +12,7 @@
 
 
 <!--user_comment-->
- <div class="container mt-4" style="max-height : 400px; overflow: scroll; border: #838d93 10px solid; background-color: #838d93; color: white;">
+ <div class="container mt-4" style="max-height : 400px; overflow: auto; border: #838d93 10px solid; background-color: #838d93; color: white;">
      <div class="row">
          <div class="ml-4 mt-2" style="color:white;"><h4><i class="fas fa-comments"></i> User review: <%= @user.name %></h4></div>
      </div>
@@ -28,7 +28,7 @@
              <% if @user_reviews.any? %>
              <% @user_reviews.each do |review| %>
                  <div class="row">
-                      <div class="col-sm-11  mb-1 ml-4 bg-light text-dark" style="overflow: scroll; min-height: 15px;">
+                      <div class="col-sm-11  mb-1 ml-4 bg-light text-secondary" style="overflow: auto;">
                         <%= review.content %>
                      </div>
                  </div>
@@ -66,7 +66,7 @@
             
             
 <!--comment-->
-<div class="container mt-4" style="max-height : 400px; overflow: scroll; border: #838d93 10px solid; background-color: #838d93; color: white;">
+<div class="container mt-4" style="max-height : 400px; overflow: auto; border: #838d93 10px solid; background-color: #838d93; color: white;">
     <div class="row">
          <div class="ml-4 mt-2" style="color:white;"><h4><i class="far fa-comments"></i> 他ユーザーからのReview comments</h4></div>
     </div>
@@ -82,7 +82,7 @@
               </div>
               <div class="col-sm-10 mt-4">
                   <div class="row ml-2 mt-2">
-                     <div class="col-sm-11 bg-light mb-1 text-dark" style="overflow: scroll; min-height: 15px;">
+                     <div class="col-sm-11 bg-light mb-1 text-secondary" style="overflow: auto;">
                         <%= review.content %>
                      </div>
                  </div>

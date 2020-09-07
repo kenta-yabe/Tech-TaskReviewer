@@ -10,7 +10,7 @@
    </div>
  </div> 
 
- <div class="container mt-2" style="max-height : 400px; overflow: scroll; border: #838d93 10px solid; background-color: #838d93;">
+ <div class="container mt-2" style="max-height : 400px; overflow: auto; border: #838d93 10px solid; background-color: #838d93;">
     <%= render 'user_purpose', purposes: @purposes, user: @user %>
  </div>
 
@@ -32,6 +32,6 @@
    </div>
  </div> 
 
- <div class="container mt-2" style="max-height : 600px; overflow: scroll; border: #838d93 10px solid; background-color: #838d93;">
+ <div class="container mt-2" style="max-height : 600px; overflow: auto; border: #838d93 10px solid; background-color: #838d93;">
     <%= render 'comment_list', review_purposes: @review_purposes, user: @user %>
 </div>
